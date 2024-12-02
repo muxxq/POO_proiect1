@@ -1,10 +1,9 @@
-// POO_proiect1.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <vector>
+#include <string>
 
 using namespace std;
-//class PlatformaPetroliera {
+class PlatformaPetroliera {
 private:
     string id;
     int capacitateExtractie;
@@ -93,13 +92,81 @@ void afiseazaMeniu() {
     cout << "0. Iesire\n";
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+int main() {
+    PlatformaPetroliera platforma("P001", 1000, 50.0);
+    Transport transport(300, "Rafinaria Nord");
+    Rafinare rafinare(200);
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    int optiune = -1;
+    while (optiune != 0) {
+        afiseazaMeniu();
+        cout << "Alege o optiune: ";
+        cin >> optiune;
+
+        switch (optiune) {
+        case 1:
+            platforma.afiseazaInfo();
+            break;
+        case 2: {
+            int cantitate;
+            cout << "Introduceti cantitatea de petrol de extras: ";
+            cin >> cantitate;
+            platforma.extragePetrol(cantitate);
+            break;
+        }
+        case 3: {
+            double pret;
+            cout << "Introduceti noul pret per baril: ";
+            cin >> pret;
+            platforma.setPretPerBaril(pret);
+            cout << "Pretul a fost actualizat.\n";
+            break;
+        }
+        case 4: {
+            int capacitate;
+            cout << "Introduceti noua capacitate de extractie: ";
+            cin >> capacitate;
+            platforma.setCapacitateExtractie(capacitate);
+            cout << "Capacitatea de extractie a fost actualizata.\n";
+            break;
+        }
+        case 5: {
+            int stoc;
+            cout << "Introduceti noul stoc curent: ";
+            cin >> stoc;
+            platforma.setStocCurent(stoc);
+            cout << "Stocul curent a fost actualizat.\n";
+            break;
+        }
+        case 6: {
+            int cantitate;
+            cout << "Introduceti cantitatea de petrol de transportat: ";
+            cin >> cantitate;
+            transport.transporta(cantitate);
+            break;
+        }
+        case 7: {
+            int cantitate;
+            cout << "Introduceti cantitatea de petrol de rafinat: ";
+            cin >> cantitate;
+            rafinare.rafineaza(cantitate);
+            break;
+        }
+        case 8: {
+            int capacitate;
+            cout << "Introduceti noua capacitate de rafinare: ";
+            cin >> capacitate;
+            rafinare.setCapacitateRafinare(capacitate);
+            cout << "Capacitatea de rafinare a fost actualizata.\n";
+            break;
+        }
+        case 0:
+            cout << "Iesire din program.\n";
+            break;
+        default:
+            cout << "Optiune invalida! Incercati din nou.\n";
+        }
+    }
+
+    return 0;
+}
