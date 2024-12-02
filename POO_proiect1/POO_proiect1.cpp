@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 
-using namespace std;
+using namespace std; //what
 class PlatformaPetroliera {
 private:
     string id;
